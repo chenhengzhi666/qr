@@ -38,7 +38,7 @@
 			
 			#output {
 				position: absolute;
-				top: 25%;
+				top: 30%;
 				left: 23%;
 			}
 			
@@ -71,12 +71,20 @@
 				position: absolute;
 				bottom: 0;
 			}
+			#copy{
+				position: absolute;
+				position: absolute;
+   				top: 45%;
+    			left: 42%;
+   				z-index: -1;			
+			}
 		</style>
 	</head>
 
 	<body>
 		<textarea id="inp">请输入：网址/文本</textarea>
 		<button id="btn">生成QR图</button>
+		<span id="copy">&copy;陈恒志</span>
 		<div id="output"></div>
 		
 		<script type="text/javascript">
@@ -101,16 +109,21 @@
 					}
 					return out;
 				}
+				$('#inp').focus(function() {
+					$('#inp').text('');
+				})
 				$('#btn').click(function() {
-					$('#output canvas').remove();
-					$('#output').qrcode({
-						render: "canvas", //也可以替换为table
-						width: 200,
-						height: 200,
-						foreground: '#000',
-						background: '#fff',
-						text: utf16to8($('#inp').val())
-					});
+					if($('#inp').val() != '请输入：网址/文本') {
+						$('#output canvas').remove();
+						$('#output').qrcode({
+							render: "canvas", //也可以替换为table
+							width: 200,
+							height: 200,
+							foreground: '#000',
+							background: '#fff',
+							text: utf16to8($('#inp').val())
+						});
+					}
 				});
 
 				
